@@ -11,7 +11,7 @@
 | System prompts              | `src/prompts.js`; level-specific scaffolding and verified context                                                              |
 | Source code and README      | Pushed to the public `johndoe018/nurasyl` repository on `main`                                                                 |
 | One-page report             | `public/report.pdf`; editable source in `public/report.md`                                                                     |
-| Deployment                  | GitHub Actions workflow included; no verified live URL yet                                                                     |
+| Deployment                  | Published and browser-checked; source-branch and workflow deployment supported                                                                     |
 
 ## Validation evidence
 
@@ -23,10 +23,12 @@
 - Current-instance AI/download restriction: HTTPS CONNECT to Hugging Face returned **403 Forbidden**. The browser suite simulates that failure explicitly; it is not a successful inference test.
 - Current-instance GitHub API restriction: API requests returned **Forbidden**. Git repository reads work through the platform Git proxy; that does not prove API or deployment access.
 
-## Finish publication
+## Publication correction
 
-Review the saved environment network additions and apply them before rerunning the model and API checks. The source is already pushed to `main`. Open [Settings → Pages](https://github.com/johndoe018/nurasyl/settings/pages), select **GitHub Actions** as the source, and rerun the included deployment workflow. The first deployment confirmed that Pages is currently disabled; the workflow token cannot enable it. Record the actual URL from a successful deployment and verify a real AI response there. Enter that URL and the populated public source-repository link in the assignment submission.
+The blank page was caused by Pages publishing raw source from `main:/`, including an uncompiled `/src/main.jsx` script. The application now keeps its editable HTML in `app/index.html` and commits a complete compiled static site at the repository root. `npm run build` refreshes both `dist/` and those branch-publication files. Both Pages publication modes therefore serve a compiled application.
 
-**Live website:** not yet published/verified.
+A production artifact deployment succeeded in [run 38811431510](https://github.com/johndoe018/nurasyl/actions/runs/38811431510), and the live interface was exercised over TLS-verified HTTPS. The branch-published root was separately tested with the complete browser suite. Pages mode changes were denied to the integration (403); the source layout fix removes that requirement.
+
+**Live website:** https://johndoe018.github.io/nurasyl/ — compiled application verified in the browser.
 
 **Public source repository:** https://github.com/johndoe018/nurasyl — source pushed successfully to `main`; public GitHub page returned HTTP 200.

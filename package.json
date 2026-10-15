@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/copy-onnx.mjs && vite --host 0.0.0.0",
-    "build": "node scripts/copy-onnx.mjs && vite build",
+    "build": "node scripts/copy-onnx.mjs && vite build && node scripts/publish-pages.mjs",
     "preview": "vite preview --host 0.0.0.0",
     "test": "node --test tests/*.test.js"
   },

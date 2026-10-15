@@ -39,6 +39,7 @@ self.onmessage = async ({ data }) => {
       requestId: data.requestId,
     });
   } catch (error) {
+    console.error("Axiom AI model error:", error);
     generatorPromise = undefined;
     self.postMessage({
       type: "error",

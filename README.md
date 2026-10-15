@@ -62,13 +62,17 @@ CHROMIUM_PATH=/usr/bin/chromium python3 tests/browser_smoke.py
 
 Start the app first. Set `AXIOM_TEST_URL` to override the default internal test address and `AXIOM_TEST_ARTIFACTS` to choose a screenshot directory. The suite uses an isolated browser context; it does not alter an existing learner's data. The unavailable-model test intentionally blocks model requests and **does not validate real inference**.
 
-Current cloud validation: production build and math tests passed; functional browser results are recorded in `SUBMISSION.md`. Hugging Face access was denied by the cloud network proxy, so successful model loading and real generated output still need a live check with that access enabled. Do not describe inference as verified until that check passes.
+Current cloud validation: production build, mathematics tests, browser learner flows, and the public deployment have passed. The actual q4 model files are reachable and were downloaded through verified HTTPS. Successful AI text generation remains a separate check and is not implied by these UI tests.
 
 ## Deployment
 
 The production output in `dist/` is a static website, including the local WebAssembly runtime. Vite uses relative asset paths so root hosting and repository subpaths both work. Deploy the **whole** directory, including `onnx/` and `assets/`.
 
 ### GitHub Pages
+
+Both **Deploy from a branch → main → / (root)** and **GitHub Actions** are supported. The root `index.html`, `assets/`, `onnx/`, report files, and `.nojekyll` are generated, committed static publication files. The editable HTML entry is `app/index.html`. After editing source, run `npm run build` and commit the refreshed publication files with the source. This prevents Pages from serving uncompiled JSX and showing a blank page.
+
+For artifact-based deployment:
 
 1. Push the source to the `main` branch of `johndoe018/nurasyl`.
 2. In repository **Settings → Pages → Build and deployment**, choose **GitHub Actions**.
@@ -89,12 +93,14 @@ Report authorship is attributed to Nurasyl Nurbay with AI development assistance
 ## Project map
 
 ```text
+app/index.html        Editable HTML entry (root index.html is generated)
 src/App.jsx           Learner interface, progress, bookmarks and AI lifecycle
 src/styles.css        X-inspired responsive dark/light interface
 src/math.js           Independently checked tasks, solutions and answer checking
 src/prompts.js        Level-specific system prompts
 src/ai.worker.js      Real on-device language model inference
 scripts/copy-onnx.mjs  Prepares same-origin WebAssembly files
+scripts/publish-pages.mjs  Updates dist/ and the branch-published root site
 tests/                Mathematics and browser functional checks
 public/report.*       One-page assignment report
 .github/workflows/    Validation and GitHub Pages deployment
