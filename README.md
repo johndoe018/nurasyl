@@ -1,16 +1,16 @@
 # Axiom — Find your angle
 
-A responsive geometry learning space for **Nurasyl Nurbay**, created for *AI for Differentiated Learning*. The interface takes inspiration from X: black and white surfaces, thin separators, a three-column feed, blue accents, rounded controls, and a familiar system sans-serif stack. It uses original branding and illustrations; it does not bundle X's proprietary Chirp font.
+A responsive geometry learning space for **Nurasyl Nurbay**, created for _AI for Differentiated Learning_. The interface takes inspiration from X: black and white surfaces, thin separators, a three-column feed, blue accents, rounded controls, and a familiar system sans-serif stack. It uses original branding and illustrations; it does not bundle X's proprietary Chirp font.
 
 ## One idea, three starting points
 
 The single core concept is the **Pythagorean theorem**. Difficulty changes the unknown, the context, and the amount of scaffolding.
 
-| Level | Task | First example | Guidance |
-| --- | --- | --- | --- |
-| Foundation | Find a right triangle's hypotenuse | Legs 6 cm and 8 cm → **10 cm** | Identify the sides, substitute, square and add |
-| Standard | Model a ladder against a wall and find a leg | Ladder 13 m, base 5 m → **12 m** | Recognize the hypotenuse and rearrange the formula |
-| Advanced | Find the shortest surface route between opposite corners of a box | 3 × 4 × 12 cm → **√193 ≈ 13.89 cm** | Unfold adjacent faces and compare three diagonals |
+| Level      | Task                                                              | First example                       | Guidance                                           |
+| ---------- | ----------------------------------------------------------------- | ----------------------------------- | -------------------------------------------------- |
+| Foundation | Find a right triangle's hypotenuse                                | Legs 6 cm and 8 cm → **10 cm**      | Identify the sides, substitute, square and add     |
+| Standard   | Model a ladder against a wall and find a leg                      | Ladder 13 m, base 5 m → **12 m**    | Recognize the hypotenuse and rearrange the formula |
+| Advanced   | Find the shortest surface route between opposite corners of a box | 3 × 4 × 12 cm → **√193 ≈ 13.89 cm** | Unfold adjacent faces and compare three diagonals  |
 
 There are seven Foundation, seven Standard, and six Advanced numerical variations, cycling when requested. Problems include three progressive hints, a worked solution, immediate answer feedback, bookmarks, and a local progress history. Opening a solution prevents that attempt from counting as independent completion. A new variation lets the student try again.
 
@@ -38,7 +38,7 @@ npm run preview -- --port 3000
 
 The **Ask AI tutor** dialog runs [`onnx-community/SmolLM2-135M-Instruct`](https://huggingface.co/onnx-community/SmolLM2-135M-Instruct) through Transformers.js and ONNX Runtime in a dedicated browser worker. The model uses `q4` weights and the WebAssembly CPU backend. It is loaded only after the learner chooses **Explain my next step**. The first download is roughly 100–200 MB; subsequent visits can reuse the browser cache. Model loading and CPU inference may take time on slower devices.
 
-The model explains a *verified hint* rather than generating the answer used for grading. `src/prompts.js` contains the actual system prompts: simple, explicit steps at Foundation; contextual reasoning at Standard; unfolding and comparing routes at Advanced. The prompt includes the selected problem and current hint. Generation uses at most 100 new tokens and deterministic decoding. AI can still be inaccurate, so the verified hint and worked solution remain visible and authoritative.
+The model explains a _verified hint_ rather than generating the answer used for grading. `src/prompts.js` contains the actual system prompts: simple, explicit steps at Foundation; contextual reasoning at Standard; unfolding and comparing routes at Advanced. The prompt includes the selected problem and current hint. Generation uses at most 100 new tokens and deterministic decoding. AI can still be inaccurate, so the verified hint and worked solution remain visible and authoritative.
 
 **The deterministic hints are not AI outputs.** If the model download fails, the app reports that failure and offers a retry; it never substitutes a canned response and labels it AI. Mathematics practice works without the model once the app has loaded. This is not an offline-installable PWA.
 
@@ -82,7 +82,7 @@ For Netlify or Vercel, use `npm run build`, output directory `dist`, and set bui
 - [`public/report.pdf`](public/report.pdf): the one-page project report, also downloadable from the site.
 - [`public/report.md`](public/report.md): editable report source.
 - [`SUBMISSION.md`](SUBMISSION.md): checklist, validation evidence, and publication status.
-- Source repository: <https://github.com/johndoe018/nurasyl> (local source must be pushed before this link contains the implementation).
+- Public source repository: <https://github.com/johndoe018/nurasyl> (source pushed to `main` and verified through the Git proxy).
 
 Report authorship is attributed to Nurasyl Nurbay with AI development assistance disclosed. The learner should understand and review the implementation and prompts before submitting academic work.
 
