@@ -36,7 +36,7 @@ npm run preview -- --port 3000
 
 ## Real AI, on your device
 
-The **Ask AI tutor** dialog runs [`onnx-community/SmolLM2-135M-Instruct`](https://huggingface.co/onnx-community/SmolLM2-135M-Instruct) through Transformers.js and ONNX Runtime in a dedicated browser worker. The model uses `q4` weights and the WebAssembly CPU backend. It is loaded only after the learner chooses **Explain my next step**. The first download is roughly 100–200 MB; subsequent visits can reuse the browser cache. Model loading and CPU inference may take time on slower devices.
+The **Ask AI tutor** dialog runs [`onnx-community/SmolLM2-135M-Instruct-ONNX`](https://huggingface.co/onnx-community/SmolLM2-135M-Instruct-ONNX) through Transformers.js and ONNX Runtime in a dedicated browser worker. The model uses `q4` weights and the WebAssembly CPU backend. It is loaded only after the learner chooses **Explain my next step**. The first download is roughly 180 MB; subsequent visits can reuse the browser cache. Model loading and CPU inference may take time on slower devices.
 
 The model explains a _verified hint_ rather than generating the answer used for grading. `src/prompts.js` contains the actual system prompts: simple, explicit steps at Foundation; contextual reasoning at Standard; unfolding and comparing routes at Advanced. The prompt includes the selected problem and current hint. Generation uses at most 100 new tokens and deterministic decoding. AI can still be inaccurate, so the verified hint and worked solution remain visible and authoritative.
 

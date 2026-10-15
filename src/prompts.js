@@ -1,4 +1,4 @@
-export const MODEL_ID = "onnx-community/SmolLM2-135M-Instruct";
+export const MODEL_ID = "onnx-community/SmolLM2-135M-Instruct-ONNX";
 
 export function buildMessages(problem, hintIndex = 0) {
   const style = {
